@@ -1,8 +1,8 @@
 package objectAndClass;
 
 public class Book {
-    private String bookName;
-    private Author bookAuthor;
+     private String bookName;
+     private Author bookAuthor;
     private int bookYear;
     public Book (String bookName, Author bookAuthor, int bookYear){
         this.bookName = bookName;
