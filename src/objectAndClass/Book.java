@@ -22,7 +22,9 @@ public class Book {
         return this.bookYear;
     }
     public void setBookYear(int bookYear){
-        this.bookYear = bookYear;
+        if(bookYear>0) {
+            this.bookYear = bookYear;
+        }
     }
 
     public String toString(){
