@@ -1,5 +1,7 @@
 package kursovaya;
 
+import java.util.Objects;
+
 public class Employee {
     private int id;
     private String family;
@@ -9,7 +11,7 @@ public class Employee {
     private int department;
     private double salary;
 
-    public static int countId = 1;
+    public static int countId;
 
 
     public Employee(int department, String family, String name, String lastName, double salary) {
@@ -26,7 +28,8 @@ public class Employee {
     public String toString() {
         return "Таб.номер: " + this.id + " Отдел: " + this.department + " Фамилия: "
                 + this.family + " Имя: " + this.name + " Отчество: " + this.lastName
-                + " Оклад: " + this.salary + " рублей";
+                + " Оклад: " + String.format("%.2f", this.salary) + " рублей";
+
     }
 
     public int getId() {
@@ -56,9 +59,21 @@ public class Employee {
     public double getSalary() {
         return this.salary;
     }
-
-    public void setSalary(int salary) {
+    public void setSalary(double salary) {
         this.salary = salary;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Employee employee = (Employee) o;
+        return family.equals(employee.family) && name.equals(employee.name) && lastName.equals(employee.lastName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(family, name, lastName);
     }
 
 }
