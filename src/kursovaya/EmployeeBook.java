@@ -1,8 +1,6 @@
 package kursovaya;
 
 import java.util.Arrays;
-import java.util.Comparator;
-import java.util.Objects;
 
 public class EmployeeBook {
     private Employee[] employees;
@@ -15,13 +13,13 @@ public class EmployeeBook {
     public void addEmployee(Employee NewEmployee) {
 
         if (size >= employees.length) {
-            System.out.println("Книга заполнена");
+            System.err.println("Книга заполнена. Последняя запись не добавлена " + " -> " + NewEmployee);
 
         }
         if (size < employees.length) {
             Employee newEmp = NewEmployee;
             employees[size++] = newEmp;
-            System.out.println("Добавлен сотрудник " + newEmp.getFamily());
+            System.out.println("Добавлен сотрудник " + " -> " + newEmp.getFamily());
         }
     }
 
@@ -42,26 +40,67 @@ public class EmployeeBook {
         System.out.println("Сотрудник под id " + id + " не найден");
     }
 
-    public void changeEmployee(String family, double salary, int department) {
-
+    //2 й вариант
+    public boolean deleteEmployee(int id) {
         for (int i = 0; i < employees.length; i++) {
+            if (employees[i] != null && employees[i].getId() == id) {
+                employees[i] = null;
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void changeEmployee(int idEmployee, String family, Integer salary, Integer department) {
+        if (department > 5) {
+            System.err.println("В организации всего 5 отделов");
+        }
+        //1 й вариант через проверку фамилии
+      /*  for (int i = 0; i < employees.length; i++) {
             if (employees[i] != null && Objects.equals(employees[i].getFamily(), family)) {
                 employees[i].setSalary(salary);
                 employees[i].setDepartment(department);
+            }*/
+        //2 й вариант через id сотрудника
+        for (int i = 0; i < employees.length; i++) {
+            if (employees[i] != null && employees[i].getId() == idEmployee) {
+                if (department != null) {
+                    employees[i].setDepartment(department);
+                }
+                if (salary != null) {
+                    employees[i].setSalary(salary);
+                }
             }
         }
     }
-    public  void getListDep() {
+
+    public void getListDep() {
         //Arrays.sort(employees, 0, employees.length, Comparator.comparing(Employee::getDepartment));
         for (int i = 0; i < employees.length; i++) {
             if (employees[i] == null) {
                 continue;
             }
 
-            System.out.println(employees[i].getDepartment() + " " +employees[i].getFamily());
+            System.out.println(employees[i].getDepartment() + " " + employees[i].getFamily());
         }
 
     }
+
+    //2 вариант (цикл в цикле)
+    public String getListDep2() {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 1; i <= 5; i++) {
+            sb.append("Отдел " + i + ": ");
+            for (Employee employee : employees) {
+                if (employee != null && employee.getDepartment() == i) {
+                    sb.append(employee.getFamily()).append(" ");
+                }
+            }
+            sb.append("\n");
+        }
+        return sb.toString();
+    }
+
 
     public void getListEmployers() {
         for (int i = 0; i < employees.length; i++) {
@@ -108,15 +147,16 @@ public class EmployeeBook {
         return sumSalaryMonth() / arrLength;
     }
 
-    public double minSalary() {
-        double minSalary = Integer.MAX_VALUE;
-        for (int i = 0; i < employees.length; i++) {
-            if (employees[i] == null) {
-                continue;
-            } else if (employees[i] != null && employees[i].getSalary() < minSalary) {
-                minSalary = employees[i].getSalary();
-            }
-        }
+   double minSalary() {
+        double minSalary=Integer.MAX_VALUE;
+       for (int i = 0; i < employees.length; i++) {
+           if (employees[i] == null) {
+               continue;
+           }
+           if (employees[i].getSalary() < minSalary) {
+               minSalary = employees[i].getSalary();
+           }
+       }
         return minSalary;
     }
 
