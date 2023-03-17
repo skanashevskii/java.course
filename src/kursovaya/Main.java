@@ -26,11 +26,15 @@ public class Main {
         employeeBook.removeEmployee(9);
         employeeBook.addEmployee(new Employee(1, "Nikiforovv", "Nikifor", "Nikiforovich", 25_000));
         employeeBook.addEmployee(new Employee(1, "Nikiforov", "Nikifor", "Nikiforovich", 25_000));
-        employeeBook.addEmployee(new Employee(1, "Nikiforov", "Nikifor", "Nikiforovich", 25_000));
+        employeeBook.addEmployee(new Employee(1, "Nikiforov", "Nikifor", "Nikiforovich", 25_222));
         employeeBook.getListEmployers();
-        employeeBook.changeEmployee("Nikiforovv",500,5);
+        //employeeBook.changeEmployee("Nikiforovv",500,5);
+        employeeBook.changeEmployee(5,null,1_000,4);
         employeeBook.getListEmployers();
         employeeBook.getListDep();
+        employeeBook.getListDep2();
+        System.out.println(employeeBook.getListDep2());
+        System.out.println(employeeBook.minSalary());
     }
 
 
