@@ -2,36 +2,49 @@ package oop;
 
 public class HogwartsSchool {
 
-    private String family;
-    private String name;
+    private final String family;
+    private final String name;
     private int powerMagic;//сила колдовства
     private int rangeMagic;//дальность колдовства
 
     public HogwartsSchool(String family, String name, int powerMagic, int rangeMagic) {
-        this.family=family;
-        this.name=name;
-        this.rangeMagic=rangeMagic;
-        this.powerMagic=powerMagic;
+        this.family = family;
+        this.name = name;
+        this.rangeMagic = rangeMagic;
+        this.powerMagic = powerMagic;
     }
 
-    public void printStudent (HogwartsSchool[] faculty){
-
-        for (int i = 0; i < faculty.length; i++) {
-            if (faculty[i] == null) {
-                continue;
-            }
-            System.out.println(faculty[i]);
+    public void compareHogwartsSchool(HogwartsSchool student) {
+        if (this.powerMagic > student.getPowerMagic()) {
+            System.out.println("Сила колдовства " + this.getFamily() + " больше чем у "
+                    + student.getFamily());
+        } else if (this.powerMagic < student.getPowerMagic()) {
+            System.out.println("Сила колдовства " + this.getFamily() + " меньше чем у "
+                    + student.getFamily());
+        } else {
+            System.out.println("Сила колдовства " + this.getFamily() + " и "
+                    + student.getFamily() + " равны ");
         }
-        System.out.println();
+        if (this.powerMagic > student.getPowerMagic()) {
+            System.out.println("Дальность колдовства " + this.getFamily() + " больше чем у "
+                    + student.getFamily());
+        } else if (this.powerMagic < student.getPowerMagic()) {
+            System.out.println("Дальность колдовства " + this.getFamily() + " меньше чем у "
+                    + student.getFamily());
+        } else {
+            System.out.println("Дальность колдовства " + this.getFamily() + " и "
+                    + student.getFamily() + " равны");
+        }
     }
+
     @Override
     public String toString() {
         return
-                "family='" + family + '\'' +
-                ", name='" + name + '\'' +
-                ", powerMagic=" + powerMagic +
-                ", rangeMagic=" + rangeMagic +
-                '}'
+                "family = '" + family + '\'' +
+                        ", name = '" + name + '\'' +
+                        ", powerMagic = " + powerMagic +
+                        ", rangeMagic = " + rangeMagic +
+                        ','
                 ;
     }
 
@@ -40,7 +53,7 @@ public class HogwartsSchool {
     }
 
     public void setFamily(String family) {
-        this.family = family;
+        family = family;
     }
 
     public String getName() {
@@ -48,7 +61,7 @@ public class HogwartsSchool {
     }
 
     public void setName(String name) {
-        this.name = name;
+        name = name;
     }
 
     public int getPowerMagic() {
