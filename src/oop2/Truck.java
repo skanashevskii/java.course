@@ -1,9 +1,11 @@
 package oop2;
 
-public class Truck {
+public class Truck extends Transport{
 
-    private String modelName;
-    private int wheelsCount;
+
+    public Truck(String modelName, int wheelsCount) {
+        super(modelName, wheelsCount);
+    }
 
     public void updateTyre() {
         System.out.println("Меняем покрышку");
@@ -17,19 +19,4 @@ public class Truck {
         System.out.println("Проверяем прицеп");
     }
 
-    public String getModelName() {
-        return modelName;
-    }
-
-    public void setModelName(String modelName) {
-        this.modelName = modelName;
-    }
-
-    public int getWheelsCount() {
-        return wheelsCount;
-    }
-
-    public void setWheelsCount(int wheelsCount) {
-        this.wheelsCount = wheelsCount;
-    }
 }
